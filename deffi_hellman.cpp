@@ -50,3 +50,65 @@ int main()
 
     return 0;
 }
+
+/*
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diffie-Hellman Key Exchange</title>
+</head>
+<body>
+    <h1>Diffie-Hellman Key Exchange</h1>
+    <p>Click the button to perform the key exchange:</p>
+    <button onclick="performKeyExchange()">Perform Key Exchange</button>
+    <h2>Results</h2>
+    <div id="results"></div>
+
+    <script>
+        const prime = 23;
+        const base = 5;
+        function binexpitr(a, b) { 
+	        let ans = 1;
+	        while (b) {
+		        if (b & 1) ans = (ans * a) % prime;
+		        a = (a * a) % prime;
+		        b >>= 1;
+            }
+            return ans;
+	    }
+        function performKeyExchange() {
+            // Constants for the prime number and the base
+            
+
+            // Alice's private key
+            const alicePrivateKey = 16; // Assume Alice chooses this randomly
+
+            // Bob's private key
+            const bobPrivateKey = Math.floor(Math.random() * 10) + 1;
+
+            // Calculate Alice's public key
+            const alicePublicKey = binexpitr(base, alicePrivateKey) % prime;
+
+            // Calculate Bob's public key
+            const bobPublicKey = binexpitr(base, bobPrivateKey) % prime;
+
+            // Exchange public keys
+            const sharedKeyAlice = binexpitr(bobPublicKey, alicePrivateKey) % prime;
+            const sharedKeyBob = binexpitr(alicePublicKey, bobPrivateKey) % prime;
+
+            // Display the results
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = `
+                <p>Alice's private key: ${alicePrivateKey}</p>
+                <p>Alice's public key: ${alicePublicKey}</p>
+                <p>Bob's private key: ${bobPrivateKey}</p>
+                <p>Bob's public key: ${bobPublicKey}</p>
+                <p>Shared key calculated by Alice: ${sharedKeyAlice}</p>
+                <p>Shared key calculated by Bob: ${sharedKeyBob}</p>
+                <p>Keys match: ${sharedKeyAlice === sharedKeyBob}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
+*/
